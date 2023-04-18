@@ -1,0 +1,24 @@
+name: acnets-multihead
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+  - pip
+  # - flake8
+  - ipykernel
+  # - dvc
+  # - dvc-ssh
+  - pytorch
+  - pytorch-cuda=11.7
+  - pytorch-lightning
+  - pandas
+  - matplotlib
+  - seaborn
+  - xarray
+  - h5netcdf
+  - scikit-learn
