@@ -11,7 +11,7 @@ dependencies:
   - pip
   # - flake8
   - ipykernel
-  # - dvc
+  - dvc
   # - dvc-ssh
   - pytorch
   - pytorch-cuda=11.7
