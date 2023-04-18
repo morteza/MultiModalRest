@@ -11,6 +11,7 @@ dependencies:
   - pip
   # - flake8
   - ipykernel
+  - ipywidgets
   - dvc
   # - dvc-ssh
   - pytorch
