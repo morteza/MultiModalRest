@@ -17,9 +17,12 @@ dependencies:
   - pytorch
   - pytorch-cuda=11.7
   - pytorch-lightning
+  - tensorboard
   - pandas
   - matplotlib
   - seaborn
   - xarray
   - h5netcdf
   - scikit-learn
+  - pip:
+    - torch-tb-profiler
