@@ -2,4 +2,3 @@
 lightning_logs/
 dvclive/
 DvcLiveLogger/
-dvc.lock

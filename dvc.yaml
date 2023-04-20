@@ -1,4 +1,3 @@
-
 # Read about DVC pipeline configuration (https://dvc.org/doc/user-guide/project-structure/dvcyaml-files#stages)
 # to customize your stages even more
 stages:
@@ -9,7 +8,7 @@ stages:
       - data/julia2018
 
 metrics:
-- dvclive/metrics.json
+  - dvclive/metrics.json
 plots:
-- plots/metrics:
-    x: step
+  - dvclive/plots/metrics:
+      x: step

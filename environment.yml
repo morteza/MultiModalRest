@@ -18,7 +18,7 @@ dependencies:
   - dvclive
   # - dvc-ssh
   - pytorch
-  # - pytorch-cuda=11.7
+  - pytorch-cuda=11.7  # comment out for CPU-only
   - pytorch-lightning
   - tensorboard
   - pandas

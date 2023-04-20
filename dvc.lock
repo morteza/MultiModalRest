@@ -1,0 +1,12 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: jupyter nbconvert --to python --inplace --execute notebooks/0\ Playground.ipynb
+    deps:
+    - path: data/julia2018
+      md5: 2e1d603f2f4b826c887a90116544545e.dir
+      size: 30360752
+      nfiles: 6
+    - path: notebooks/0 Playground.ipynb
+      md5: 62203016c2599e19f6cf7d916b9946c0
+      size: 1167676
