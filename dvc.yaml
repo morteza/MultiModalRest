@@ -1,0 +1,15 @@
+
+# Read about DVC pipeline configuration (https://dvc.org/doc/user-guide/project-structure/dvcyaml-files#stages)
+# to customize your stages even more
+stages:
+  train:
+    cmd: jupyter nbconvert --to python --inplace --execute notebooks/0\ Playground.ipynb
+    deps:
+      - notebooks/0 Playground.ipynb
+      - data/julia2018
+
+metrics:
+- dvclive/metrics.json
+plots:
+- plots/metrics:
+    x: step
