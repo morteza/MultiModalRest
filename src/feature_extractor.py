@@ -20,11 +20,11 @@ class FeatureExtractor(nn.Module):
         )
 
         self.decoder = nn.Sequential(
-            nn.Conv1d(n_features, n_features * 2, 1),
+            nn.ConvTranspose1d(n_features, n_features * 2, 1),
             nn.ReLU(),
             nn.Dropout(0.2),
             # nn.ReLU(),
-            nn.Conv1d(n_features * 2, n_inputs, 1),
+            nn.ConvTranspose1d(n_features * 2, n_inputs, 1),
         )
 
     def forward(self, x):
