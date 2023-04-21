@@ -2,3 +2,7 @@
 lightning_logs/
 dvclive/
 DvcLiveLogger/
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/
+*.log

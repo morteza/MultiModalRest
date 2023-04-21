@@ -3,3 +3,6 @@
 # https://dvc.org/doc/user-guide/dvcignore
 notebooks/
 src/
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/
