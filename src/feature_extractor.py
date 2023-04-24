@@ -29,13 +29,15 @@ class FeatureExtractor(nn.Module):
 
     def forward(self, x):
         # x: batch, n_timepoints, n_inputs
-        x = x.permute(0, 2, 1)
+        # x = x.permute(0, 2, 1)
 
-        x_features = self.encoder(x)
+        # x_features = self.encoder(x)
 
-        x_recon = self.decoder(x_features)
+        # x_recon = self.decoder(x_features)
 
-        x_features = x_features.permute(0, 2, 1)
-        x_recon = x_recon.permute(0, 2, 1)
+        # x_features = x_features.permute(0, 2, 1)
+        # x_recon = x_recon.permute(0, 2, 1)
+        x_features = x
+        x_recon = x
 
         return x_features, x_recon
