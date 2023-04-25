@@ -22,10 +22,13 @@ class SeqAutoEncoder(nn.Module):
         y_enc, (h_enc, c_enc) = self.encoder(x)
         x_enc = torch.rand(batch_size, n_timepoints, self.hidden_size, device=h_enc.device)
 
+        print('[2]', self.n_inputs, self.hidden_size, x.shape, h_enc.shape)
+
         # decode
         y_dec, (h_dec, c_dec) = self.decoder(x_enc, (h_enc, c_enc))
         x_recon = self.fc_decoder(y_dec)
 
         h = h_enc[-1, :, :]  # last hidden state of encoder
+        print(self.n_inputs, self.hidden_size, h.shape, y_dec.shape, x_recon.shape, h_dec.shape)
 
         return x_recon, h
