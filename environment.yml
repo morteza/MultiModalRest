@@ -20,6 +20,7 @@ dependencies:
   - pytorch
   - pytorch-cuda=11.7  # comment out for CPU-only
   - pytorch-lightning
+  - torchmetrics
   - tensorboard
   - pandas
   - matplotlib
