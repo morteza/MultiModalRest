@@ -3,17 +3,16 @@ from torch import nn
 
 
 class SeqAutoEncoder(nn.Module):
-    def __init__(self, n_inputs, n_features, hidden_size=64):
+    def __init__(self, n_inputs, hidden_size=64):
         super(SeqAutoEncoder, self).__init__()
 
         self.n_inputs = n_inputs
-        self.n_features = n_features
         self.hidden_size = hidden_size
 
-        self.encoder = nn.LSTM(n_features, hidden_size, batch_first=True)
-        self.decoder = nn.LSTM(hidden_size, n_features, batch_first=True)
+        self.encoder = nn.LSTM(n_inputs, hidden_size, batch_first=True)
+        self.decoder = nn.LSTM(hidden_size, n_inputs, batch_first=True)
 
-        self.fc_decoder = nn.Linear(n_features, n_features)
+        self.fc_decoder = nn.Linear(n_inputs, n_inputs)
 
     def forward(self, x):
         batch_size = x.size(0)

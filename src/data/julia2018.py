@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 class Julia2018DataModule(pl.LightningDataModule):
-    def __init__(self, segment_size=31, train_ratio=0.75, batch_size=8, shuffle=False,
+    def __init__(self, segment_size=31, train_ratio=0.75, split_on='subject', batch_size=8, shuffle=False,
                  example_path='data/julia2018/timeseries_dosenbach2010.nc5'):
 
         super().__init__()
@@ -18,6 +18,7 @@ class Julia2018DataModule(pl.LightningDataModule):
         self.batch_size = batch_size
         self.shuffle = shuffle
         self.num_workers = os.cpu_count()
+        self.split_on = split_on
         self._n_features = None  # will be set in load_from_file
 
         # identify subjects
@@ -78,13 +79,14 @@ class Julia2018DataModule(pl.LightningDataModule):
 
         X_seg = X_seg.flatten(0, 1)
 
+        if len(args) == 0:
+            return X_seg
+
+        # continue with the segmentation of the args
         args_seg = []
         for arg in args:
             arg_seg = arg.reshape(-1, 1).repeat(1, n_segments).flatten()
             args_seg.append(arg_seg)
-
-        if len(args_seg) == 0:
-            return X_seg
 
         return X_seg, *args_seg
 
@@ -92,16 +94,35 @@ class Julia2018DataModule(pl.LightningDataModule):
 
         X, y_lbl, y_subject = self.load_from_file()
 
-        trn_idx, val_idx = train_test_split(
-            torch.arange(0, y_subject.max() + 1),
-            train_size=self.train_ratio,
-            stratify=y_lbl)
+        if self.split_on == 'subject':
+            split_dim = 0
+            n_subjects = X.size(0)
 
-        # segment time-series and split subjects into train and validation
-        self.trn_data = torch.utils.data.TensorDataset(*self.segment(
-            X[trn_idx], y_lbl[trn_idx], y_subject[trn_idx]))
-        self.val_data = torch.utils.data.TensorDataset(*self.segment(
-            X[val_idx], y_lbl[val_idx], y_subject[val_idx]))
+            trn_idx, val_idx = train_test_split(
+                torch.arange(0, n_subjects),
+                train_size=self.train_ratio,
+                stratify=y_lbl)
+
+            # segment time-series and split subjects into train and validation
+            self.trn_data = torch.utils.data.TensorDataset(
+                *self.segment(X[trn_idx], y_lbl[trn_idx], y_subject[trn_idx])
+            )
+            self.val_data = torch.utils.data.TensorDataset(
+                *self.segment(X[val_idx], y_lbl[val_idx], y_subject[val_idx])
+            )
+        elif self.split_on == 'sequence':
+            split_dim = 1
+            seq_len = X.size(1)
+            trn_idx = torch.arange(0, int(seq_len * self.train_ratio))
+            val_idx = torch.arange(trn_idx.max() + 1, seq_len)
+
+            # segment time-series and split subjects into train and validation
+            self.trn_data = torch.utils.data.TensorDataset(
+                *self.segment(torch.index_select(X, split_dim, trn_idx), y_lbl, y_subject)
+            )
+            self.val_data = torch.utils.data.TensorDataset(
+                *self.segment(torch.index_select(X, split_dim, val_idx), y_lbl, y_subject)
+            )
 
     def train_dataloader(self):
         return torch.utils.data.DataLoader(self.trn_data,

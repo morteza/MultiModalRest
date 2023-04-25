@@ -8,5 +8,5 @@ stages:
       size: 30360752
       nfiles: 6
     - path: notebooks/0 Playground.ipynb
-      md5: f584afd5057222d3d1d81f931caa54d9
-      size: 154083
+      md5: 81cf55278577e5630ea58c8956ceefeb
+      size: 175902

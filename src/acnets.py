@@ -15,8 +15,8 @@ class ACNets(pl.LightningModule):
         self.hidden_size = hidden_size
         self.n_subjects = n_subjects
 
-        # self.feature_extractor = FeatureExtractor(n_inputs, n_features)
-        self.encoder = SeqAutoEncoder(n_inputs, n_features, hidden_size)
+        self.feature_extractor = FeatureExtractor(n_inputs, n_features)
+        self.encoder = SeqAutoEncoder(n_features, hidden_size)
 
         # classification head
         self.head_cls = nn.Sequential(
@@ -30,9 +30,9 @@ class ACNets(pl.LightningModule):
     def forward(self, x):
 
         # feature extraction
-        # x_features, x_recon = self.feature_extractor(x)
-        x_features = x
-        x_recon = x
+        x_features, x_recon = self.feature_extractor(x)
+        # x_features = x
+        # x_recon = x
         x_features_recon, h = self.encoder(x_features)
 
         # classifications
