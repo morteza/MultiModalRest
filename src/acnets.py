@@ -3,7 +3,6 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 import pytorch_lightning as pl
-from .feature_extractor import FeatureExtractor
 from .seq_auto_encoder import SeqAutoEncoder
 import torchmetrics
 
@@ -15,8 +14,7 @@ class ACNets(pl.LightningModule):
         self.hidden_size = hidden_size
         self.n_subjects = n_subjects
 
-        self.feature_extractor = FeatureExtractor(n_inputs, n_features)
-        self.auto_encoder = SeqAutoEncoder(n_features, hidden_size)
+        self.encoder = SeqAutoEncoder(n_inputs, n_features, hidden_size)
         self.head_cls = nn.Sequential(
             nn.Linear(hidden_size, hidden_size // 2),
             nn.ReLU(),
@@ -28,28 +26,25 @@ class ACNets(pl.LightningModule):
     def forward(self, x):
 
         # feature extraction
-        features, x_recon = self.feature_extractor(x)
-        features_recon, h = self.auto_encoder(features)
+        x_recon, h = self.encoder(x)
 
         # classifications
         y_cls = self.head_cls(h)
         y_subj = self.head_subj_cls(h)
 
-        return x_recon, features, features_recon, y_cls, y_subj
+        return x_recon, y_cls, y_subj
 
     def training_step(self, batch, batch_idx):
         x, y_cls, y_subj  = batch
         x_past = x[:, :-1, :]
-        x_future = x[:, 1:, :]
-        x_recon, x_features, x_features_recon, y_cls_hat, y_subj_hat = self(x_past)
+        x_future = x[:, :1, :]
+        x_recon, y_cls_hat, y_subj_hat = self(x_past)
 
         # loss
         loss_recon = F.mse_loss(x_recon, x_future)
-        loss_features = F.mse_loss(x_features_recon, x_features)
         loss_cls = F.cross_entropy(y_cls_hat, y_cls)
-        loss = loss_recon + loss_features + loss_cls
+        loss = loss_recon + loss_cls
         self.log('train/loss_recon', loss_recon)
-        self.log('train/loss_features', loss_features)
         self.log('train/loss_cls', loss_cls)
         self.log('train/loss', loss)
 
@@ -66,15 +61,13 @@ class ACNets(pl.LightningModule):
         x, y_cls, y_subj  = batch
         x_past = x[:, :-1, :]
         x_future = x[:, 1:, :]
-        x_recon, x_features, x_features_recon, y_cls_hat, y_subj_hat = self(x_past)
+        x_recon, y_cls_hat, y_subj_hat = self(x_past)
 
         # loss
         loss_recon = F.mse_loss(x_recon, x_future)
-        loss_features = F.mse_loss(x_features_recon, x_features)
         loss_cls = F.cross_entropy(y_cls_hat, y_cls)
-        loss = loss_recon + loss_features + loss_cls
+        loss = loss_recon + loss_cls
         self.log('val/loss_recon', loss_recon)
-        self.log('val/loss_features', loss_features)
         self.log('val/loss_cls', loss_cls)
         self.log('val/loss', loss)
 
