@@ -3,32 +3,35 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 import pytorch_lightning as pl
-from .seq_auto_encoder import SeqAutoEncoder
 import torchmetrics
+from .spatiotemporal_auto_encoder import SpatioTemporalAutoEncoder
 
 
-class ACNets(pl.LightningModule):
-    def __init__(self, n_inputs, n_features, hidden_size, n_subjects):
+class MultiHeadClassifier(pl.LightningModule):
+    def __init__(self, n_inputs, n_spatial_features, n_temporal_features, n_subjects):
         super().__init__()
         # self.example_input_array = torch.Tensor(32, 124, 32)
-        self.hidden_size = hidden_size
+        self.n_spatial_features = n_spatial_features
+        self.n_temporal_features = n_temporal_features
         self.n_subjects = n_subjects
 
-        self.encoder = SeqAutoEncoder(n_inputs, n_features, hidden_size)
+        self.auto_encoder = SpatioTemporalAutoEncoder(n_inputs, n_spatial_features, n_temporal_features)
+
+        # LABEL CLASSIFIER
         self.head_cls = nn.Sequential(
-            nn.Linear(hidden_size, hidden_size // 2),
+            nn.Linear(n_temporal_features, n_temporal_features // 2),
             nn.ReLU(),
-            nn.Linear(hidden_size // 2, 2),
+            nn.Linear(n_temporal_features // 2, 2),
             nn.Softmax(dim=1)
         )
-        self.head_subj_cls = nn.Linear(hidden_size, n_subjects)
+
+        # SUBJECT CLASSIFIER
+        self.head_subj_cls = nn.Linear(n_temporal_features, n_subjects)
 
     def forward(self, x):
 
-        # feature extraction
-        x_recon, h = self.encoder(x)
+        x_recon, h = self.auto_encoder(x)
 
-        # classifications
         y_cls = self.head_cls(h)
         y_subj = self.head_subj_cls(h)
 
