@@ -1,4 +1,4 @@
-name: acnets-multihead
+name: spatiotemporal-multihead
 
 channels:
   - pytorch

@@ -7,5 +7,5 @@ This project demonstrates multi-input multi-output pipeline to analyze resting-s
 
 ```bash
 mamba env create -f environment.yml
-mamba activate acnets-multihead
+mamba activate spatiotemporal-multihead
 ```
