@@ -1,0 +1,12 @@
+md5: 268a57b75432bd792465abf83353bf2b
+frozen: true
+deps:
+- path: /
+  repo:
+    url: https://github.com/OpenNeuroDatasets/ds002843.git
+    rev_lock: fe24abd8d5a5096a7514890720a3f3c7b8f53201
+outs:
+- md5: d1b989ab2d51372e0cbcb7507b2ffab8.dir
+  size: 3198046
+  nfiles: 7536
+  path: ds002843
