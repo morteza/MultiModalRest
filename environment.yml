@@ -1,4 +1,4 @@
-name: spatiotemporal-multihead
+name: multihead
 
 channels:
   - pytorch
