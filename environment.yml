@@ -1,4 +1,4 @@
-name: multihead
+name: MultiModalResting
 
 channels:
   - pytorch
