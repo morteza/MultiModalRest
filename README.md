@@ -1,12 +1,12 @@
-# Multi-Head Brain Auto-Encoder
+# Multi-Modal Resting-State Brain Model
 
-This project demonstrates multi-input multi-output pipeline to extract spatio-temporal embedding from brain time-series (including resting-state fMRI and EEG).
+This project demonstrates multi-modal multi-head pipeline to extract spatiotemporal embedding from resting-state brain activities (including resting-state fMRI and EEG).
 
 ## Setup
 
 ```bash
 mamba env create -f environment.yml
-mamba activate multihead
+mamba activate MultiModalResting
 ```
 
 ## Data
