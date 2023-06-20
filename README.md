@@ -6,7 +6,7 @@ This project demonstrates multi-modal multi-head pipeline to extract spatiotempo
 
 ```bash
 mamba env create -f environment.yml
-mamba activate MultiModalResting
+mamba activate MultiModalRest
 ```
 
 ## Data
