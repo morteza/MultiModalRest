@@ -1,4 +1,4 @@
-name: MultiModalResting
+name: MultiModalRest
 
 channels:
   - pytorch
