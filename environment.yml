@@ -7,6 +7,7 @@ channels:
   - defaults
 
 dependencies:
+  - nodejs  # for openneuro-cli
   - python=3.10
   - pip
   # - flake8
