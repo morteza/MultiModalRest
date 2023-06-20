@@ -1,4 +1,4 @@
-# Multi-Modal Resting-State Brain Model
+# Pretrained Multi-Modal Resting-State Brain Model
 
 This project demonstrates multi-modal multi-head pipeline to extract spatiotemporal embedding from resting-state brain activities (including resting-state fMRI and EEG).
 
