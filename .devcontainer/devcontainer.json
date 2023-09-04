@@ -1,22 +1,23 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
-	"name": "Python Mamba Environment",
+	"name": "Python",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine",
-	"features": {
-		"ghcr.io/devcontainers/features/python:1": {},
-		"ghcr.io/mamba-org/devcontainer-features/micromamba:1": {}
-	}
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/mamba-org/devcontainer-features/micromamba:1": {
+			"channels": "conda-forge defaults",
+			"envFile": "environment.yml"
+		}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	// "postCreateCommand": "mamba env create -f environment.yml",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
