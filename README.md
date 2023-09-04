@@ -1,4 +1,4 @@
-# Pretrained Multi-Modal Resting-State Brain Model
+# Pre-trained Multi-Modal Resting-State Brain Model
 
 This project demonstrates multi-modal multi-head pipeline to extract spatiotemporal embedding from resting-state brain activities (including resting-state fMRI and EEG).
 
@@ -11,7 +11,7 @@ mamba activate MultiModalRest
 
 ## Data
 
-You can use DVC to import OpenNeuro dataset. For example, to import [ds002843](https://openneuro.org/datasets/ds002843/):
+Use DVC to import OpenNeuro datasets. For example, to import [ds002843](https://openneuro.org/datasets/ds002843/):
 
 ```bash
 dvc import https://github.com/OpenNeuroDatasets/ds002843.git / -o data/ds002843
