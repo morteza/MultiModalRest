@@ -28,4 +28,4 @@ jobs:
           SSH_HOST: ${{ secrets.HPC_SSH_HOST }}
 
       - name: Pull the repository from GH
-        run: ssh staging 'cd ~/workspace/MultiModalRest && git pull'
+        run: ssh hpc 'cd ~/workspace/MultiModalRest && git pull'
