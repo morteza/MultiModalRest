@@ -1,0 +1,31 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  # test:
+  #   ...
+  deploy:
+    name: "Sync ULHPC Repository"
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    # needs: test
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/gh_rsa
+          chmod 600 ~/.ssh/gh_rsa
+          cat >>~/.ssh/config <<END
+          Host hpc
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/gh_rsa
+            StrictHostKeyChecking no
+            IdentitiesOnly yes
+          END
+        env:
+          SSH_USER: ${{ secrets.HPC_SSH_USER }}
+          SSH_KEY: ${{ secrets.HPC_SSH_KEY }}
+          SSH_HOST: ${{ secrets.HPC_SSH_HOST }}
+
+      - name: Pull the repository from GH
+        run: ssh staging 'cd ~/workspace/MultiModalRest && git pull'
