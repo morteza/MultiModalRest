@@ -7,27 +7,28 @@ channels:
   - defaults
 
 dependencies:
-  - nodejs  # for openneuro-cli
-  - python=3.10
+  # - nodejs  # for openneuro-cli
+  - python
   - pip
   # - flake8
   - ipykernel
-  - jupyter_contrib_nbextensions
-  - nbconvert
-  - ipywidgets
+  # - jupyter_contrib_nbextensions
+  # - nbconvert
+  # - ipywidgets
   - dvc
+  - dvc-s3
   - dvclive
   # - dvc-ssh
   - pytorch
-  - pytorch-cuda=11.7  # comment out for CPU-only
+  # - pytorch-cuda=11.7  # comment out for CPU-only
   - pytorch-lightning
   - torchmetrics
   - tensorboard
   - pandas
   - matplotlib
   - seaborn
-  - xarray
-  - h5netcdf
+  # - xarray
+  # - h5netcdf
   - scikit-learn
-  - pip:
-    - torch-tb-profiler
+  # - pip:
+  #   - torch-tb-profiler
