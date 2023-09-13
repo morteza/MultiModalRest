@@ -1,9 +1,13 @@
 #!/bin/bash -l
-#SBATCH -N 2
-#SBATCH --ntasks-per-node=1
-#SBATCH -c 1
-#SBATCH --time=0-12:00:00
-#SBATCH -p big
+#SBATCH --job-name=openneuro_download
+#SBATCH --output=/shared/projects/TPDLMMMRSEF/logs/%x_%A.out
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --partition=big
+#SBATCH --time=24:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=morteza.ansarinia@uni.lu
+
 
 spack/bin/spack install py-datalad
 spack/bin/spack load py-datalad
