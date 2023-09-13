@@ -1,9 +1,9 @@
 #!/bin/bash -l
-#SBATCH -N 4
-#SBATCH --ntasks-per-node=4
+#SBATCH -N 2
+#SBATCH --ntasks-per-node=1
 #SBATCH -c 1
-#SBATCH --time=0-02:00:00
-#SBATCH -p batch
+#SBATCH --time=0-12:00:00
+#SBATCH -p big
 
 spack/bin/spack install py-datalad
 spack/bin/spack load py-datalad
