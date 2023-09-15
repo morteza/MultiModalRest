@@ -1,2 +1,6 @@
 [core]
     autostage = true
+    remote = hpc
+['remote "hpc"']
+    url = ssh://aws-ulhpc/shared/projects/TPDLMMMRSEF/datasets/dvc
+    user = mansarinia

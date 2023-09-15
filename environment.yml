@@ -17,6 +17,7 @@ dependencies:
   # - ipywidgets
   - dvc
   - dvc-s3
+  - dvc-ssh
   - dvclive
   # - dvc-ssh
   - pytorch
