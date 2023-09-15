@@ -21,5 +21,8 @@ spack/bin/spack install py-datalad
 spack/bin/spack load py-datalad
 
 # Download dataset
-# NOTE: this is being executed in the shared folder (see --chdir in the slurm headers)
-cd %PROJ_DIR/data/ && datalad install -r https://datasets.datalad.org/openneuro
+DATALAD_DIR=/shared/projects/TPDLMMMRSEF/datasets/datalad/
+mkdir -p $DATALAD_DIR
+
+# NOTE: this is being executed in the shared project folder (see --chdir in the slurm headers)
+cd $DATALAD_DIR && datalad install -r https://datasets.datalad.org/openneuro
