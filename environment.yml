@@ -30,5 +30,6 @@ dependencies:
   # - xarray
   # - h5netcdf
   - scikit-learn
+  - nilearn
   # - pip:
   #   - torch-tb-profiler
