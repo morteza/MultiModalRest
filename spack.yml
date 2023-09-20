@@ -1,0 +1,24 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  # add package specs to the `specs` list
+  specs: []
+  view: true
+  concretizer:
+    unify: true
+  compilers:
+  - compiler:
+      spec: gcc@=12.2.0
+      paths:
+        cc: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gcc
+        cxx: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/g++
+        f77: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gfortran
+        fc: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gfortran
+      flags: {}
+      operating_system: amzn2
+      target: aarch64
+      modules: [ "compiler/GCC/12.2.0" ]
+      environment: {}
+      extra_rpaths: []
