@@ -32,5 +32,7 @@ dependencies:
   # - h5netcdf
   - scikit-learn
   - nilearn
-  # - pip:
+  - pip:
+      - antspyx
+      - antspynet
   #   - torch-tb-profiler
