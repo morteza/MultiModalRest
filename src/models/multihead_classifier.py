@@ -8,14 +8,17 @@ from .spatiotemporal_auto_encoder import SpatioTemporalAutoEncoder
 
 
 class MultiHeadClassifier(pl.LightningModule):
-    def __init__(self, n_inputs, n_spatial_features, n_temporal_features, n_subjects):
+    def __init__(self, n_subjects, n_spatial_features, n_temporal_features, example_input_array):
         super().__init__()
         # self.example_input_array = torch.Tensor(32, 124, 32)
+        self.n_subjects = n_subjects
         self.n_spatial_features = n_spatial_features
         self.n_temporal_features = n_temporal_features
-        self.n_subjects = n_subjects
 
-        self.auto_encoder = SpatioTemporalAutoEncoder(n_inputs, n_spatial_features, n_temporal_features)
+        self.auto_encoder = SpatioTemporalAutoEncoder(
+            n_spatial_features,
+            n_temporal_features,
+            example_input_array)
 
         # LABEL CLASSIFIER
         self.head_cls = nn.Sequential(
@@ -35,13 +38,13 @@ class MultiHeadClassifier(pl.LightningModule):
         y_cls = self.head_cls(h)
         y_subj = self.head_subj_cls(h)
 
-        return x_recon, y_cls, y_subj
+        return x_recon, h, y_cls, y_subj
 
     def training_step(self, batch, batch_idx):
-        x, y_cls, y_subj  = batch
+        x, subject_labels, y_cls = batch
         x_past = x[:, :-1, :]
         x_future = x[:, :1, :]
-        x_recon, y_cls_hat, y_subj_hat = self(x_past)
+        x_recon, h, y_cls_hat, y_subj_hat = self(x_past)
 
         # loss
         loss_recon = F.mse_loss(x_recon, x_future)
@@ -61,13 +64,15 @@ class MultiHeadClassifier(pl.LightningModule):
         return loss
 
     def validation_step(self, batch, batch_idx):
-        x, y_cls, y_subj  = batch
+        x, subject_labels, y_cls = batch
         x_past = x[:, :-1, :]
         x_future = x[:, 1:, :]
-        x_recon, y_cls_hat, y_subj_hat = self(x_past)
+        x_recon, h, y_cls_hat, y_subj_hat = self(x_past)
 
         # loss
         loss_recon = F.mse_loss(x_recon, x_future)
+
+        print(y_cls_hat.shape, y_cls.shape)
         loss_cls = F.cross_entropy(y_cls_hat, y_cls)
         loss = loss_recon + loss_cls
         self.log('val/loss_recon', loss_recon)

@@ -10,10 +10,11 @@ git clone https://github.com/spack/spack.git
 . spack/share/spack/setup-env.sh
 ```
 
-Then:
+Then create and activate a new environment:
 
 
 ```
+cd <PROJECT_FOLDER>
 spack env create -d .
 spack env activate .
 ```
