@@ -1,4 +1,10 @@
-# Design Document: Pre-trained Model of Multi-Modal Resting State
+---
+order: 2
+---
+
+# Software Design Document
+
+## Pre-trained Model of Multi-Modal Resting State
 
 This document outlines the design and development approach for building a multi-modal model for resting-state brain imaging while leveraging the ULHPC AWS cluster. It highlights the project's scope, goals, non-goals, design considerations, and key components.
 

@@ -1,3 +1,8 @@
+---
+title: "Proposal for ULHPC/AWS 2023"
+order: 1
+---
+
 # Towards A Pre-trained Deep Learning Model for Multi-Modal Resting-State EEG and fMRI
 
 The following is the proposal submitted to the ULHPC/AWS 2023 (second call).

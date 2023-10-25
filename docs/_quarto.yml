@@ -1,0 +1,30 @@
+project:
+  type: website
+  title: Pre-trained Multi Modal Resting State Brain Models
+  output-dir: _site/
+
+
+listing: 
+  contents:
+    - "technical/*md"
+  type: grid
+  sort: default
+  categories: true
+  
+
+website:
+  title: MultiModalRest
+  search: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: technical
+        text: Technical Documents
+      - href: howto
+        text: How To
+
+format:
+  html:
+    theme: cosmo
+    toc: true
