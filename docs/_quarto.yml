@@ -3,15 +3,6 @@ project:
   title: Pre-trained Multi Modal Resting State Brain Models
   output-dir: _site/
 
-
-listing: 
-  contents:
-    - "technical/*md"
-  type: grid
-  sort: default
-  categories: true
-  
-
 website:
   title: MultiModalRest
   search: true
@@ -21,8 +12,8 @@ website:
         text: Home
       - href: technical
         text: Technical Documents
-      - href: howto
-        text: How To
+      - href: tutorials
+        text: Tutorials
 
 format:
   html:

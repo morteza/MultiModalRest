@@ -1,13 +1,17 @@
 ---
-title: "Proposal for ULHPC/AWS 2023"
+title: "ULHPC/AWS 2023 Proposal"
 order: 1
+author: Morteza Ansarinia, Pedro Cardoso-Leite
+abstract: >
+    Initial proposal submitted to the ULHPC/AWS 2023 (second call).
 ---
+
 
 # Towards A Pre-trained Deep Learning Model for Multi-Modal Resting-State EEG and fMRI
 
-The following is the proposal submitted to the ULHPC/AWS 2023 (second call).
+## Contributions
 
-## Key scientific/societal/technological contribution of the proposal
+> Key scientific/societal/technological contribution of the proposal
 
 The primary goal of xCIT Lab, led by Prof. Dr. Pedro Cardoso-Leite, is to understand how learning impacts cognitive functioning in the brain. We are particularly interested in how specific cognitive training regimes impact cognitive control–the ability to regulate our thoughts and behaviors. At present, scientific progress in the field is hampered because most current neuroimaging datasets are small and limited. Moreover, the field of cognitive neuroscience lacks a comprehensive computational model to describe and understand the spatiotemporal dynamics of the brain across imaging modalities. This scarcity of data and lack of multi-modal models further impedes efforts to create innovative diagnostic tools and cognitive enhancement strategies, critical for addressing a multitude of neurological conditions, healthcare applications, and improving our overall understanding of the human brain.
 
@@ -17,7 +21,9 @@ This type of much-needed research is not possible without the use of HPC. First,
 
 This project will have many important outcomes beyond the scientific output. The computational model will be shared with the broader scientific community via Hugging Face. This model will be paired with architecture documentation and fine-tuned models to facilitate understanding the neuroimaging data. We will also share preprocessed datasets on platforms like OpenNeuro and Zenodo for public use. Furthermore, regular blog posts will provide ongoing updates and insights about our work, ensuring accessibility for both academic and non-academic audiences.
 
-## Justification for the importance of the scientific problem and the requested resources
+## Justification
+
+> Justification for the importance of the scientific problem and the requested resources
 
 The importance of the scientific problem: The use of neuroimaging data for studying human cognition and behavior presents major challenges. Firstly, because of the high cost of the data collection processes, neuroimaging datasets are generally very small, often comprising only a few samples (less than 50 participants). This makes it hard to make reliable and replicable scientific inferences. Secondly, there is a diversity of imaging modalities which present different strengths and weaknesses (e.g., EEG and fMRI offer excellent temporal and spatial resolution, respectively) and require specific expert knowledge for the interpretation of the results. There is currently no principled and systematic approach to combine multiple types of imaging data within the same analysis pipeline for scientific inference. Lastly, with respect to our lab's focus, the primary scientific problem is to investigate how cognitive training affects cognitive control dynamics in the brain during rest and task. 
 
@@ -29,63 +35,90 @@ The technical advances: On technical front, we aim to test the compatibility of 
 
 The HPC/AWS clusters will be instrumental in establishing an end-to-end pipeline for our project. If successful, this could provide cognitive scientists, clinicians, and engineers with a robust standard model for brain activities, empowering more accurate diagnostics, innovative therapies, and effective cognitive enhancement strategies. The potential impact on neuroscience and related fields justifies the allocation of these resources, and the expected outcomes of the project could provide considerable societal benefits, specifically in the areas of healthcare and cognitive performance.
 
-## Overview of the project
+## Project overview
 
-Motivation: The human brain, a marvel of biological engineering, remains one of the most complex and least understood systems in the universe. The interplay between learning processes and the brain dynamics presents a realm of untapped potential, pivotal for advancements in our understanding of the brain's functioning. Currently, brain analyses are often hindered by the lack of a solid foundation model and restrictive sample sizes, limiting the generalizability and statistical validity of the findings. Furthermore, discrepancies in the preprocessing pipelines present additional challenges: computational harmonization and standardization across diverse datasets and modalities are required for an efficient, common preprocessing pipeline. These challenges motivated us to seek innovative solutions to advance the field of cognitive neuroscience.
+### Motivation
 
-Objectives: By harnessing the power of HPC and AWS, we aim to process a large collection of small datasets and conduct complex modeling to improve the reliability and reproducibility of neuroimaging studies. Our primary objective is to build a pretrained model of brain signals (described below) across multiple modalities, specifically resting-state EEG and fMRI. This pretrained model will serve as a much-needed abstraction baseline for brain activities and will be instrumental for downstream scientific tasks like varieties of hypothesis testing, modeling, and prediction. We intend to leverage few-shot learning, a type of machine learning, to achieve this objective (described below).
+The human brain, a marvel of biological engineering, remains one of the most complex and least understood systems in the universe. The interplay between learning processes and the brain dynamics presents a realm of untapped potential, pivotal for advancements in our understanding of the brain's functioning. Currently, brain analyses are often hindered by the lack of a solid foundation model and restrictive sample sizes, limiting the generalizability and statistical validity of the findings. Furthermore, discrepancies in the preprocessing pipelines present additional challenges: computational harmonization and standardization across diverse datasets and modalities are required for an efficient, common preprocessing pipeline. These challenges motivated us to seek innovative solutions to advance the field of cognitive neuroscience.
 
-Scientific challenges:
+### Objectives
+
+By harnessing the power of HPC and AWS, we aim to process a large collection of small datasets and conduct complex modeling to improve the reliability and reproducibility of neuroimaging studies. Our primary objective is to build a pretrained model of brain signals (described below) across multiple modalities, specifically resting-state EEG and fMRI. This pretrained model will serve as a much-needed abstraction baseline for brain activities and will be instrumental for downstream scientific tasks like varieties of hypothesis testing, modeling, and prediction. We intend to leverage few-shot learning, a type of machine learning, to achieve this objective (described below).
+
+**Scientific challenges:**
+
 Data collection and preprocessing: Collecting and preprocessing vast, diverse, and multimodal datasets, which are integral to deep learning systems, can pose considerable challenges in the field of neuroimaging. Currently, neuroimaging datasets are collected and preprocessed using diverse, and sometimes incompatible pipelines. This process requires meticulous effort to ensure data integrity and reliability. Moreover, combining findings across different modalities into a cohesive framework is a significant hurdle and requires simultaneous brain imaging sessions. There are now standard formats to address compatibility issues (e.g., BIDS; Brain Imaging Data Structure), the use of neuroimaging datasets remain largely isolated in their respective data silos.
+
 The integration of multimodal data: Combining data from different brain imaging modalities into a single, coherent model presents significant technical and scientific challenges. Each modality contributes unique insights into brain function, and integrating them into a meaningful and interpretable model can be intricate. EEG, for example, provides high temporal precision, while fMRI provides exquisite spatial precision. In our project we will use deep learning fusion techniques to address this integration challenge.
+
 Developing a few-shot learning model: Building an effective few-shot learning model is a complex endeavor, requiring representative datasets and extensive computational resources. Few-shot learning allows us to infer information from new, unseen instances based on knowledge acquired from different, yet related instances. A key contribution of few-shot learning on a pre-trained model is overcoming the prevalent issue of small sample sizes and weak statistical results in neuroimaging studies.
+
 Validation of the model: After training the model, it needs to be validated against real-world scenarios. This process involves rigorous testing and verifiable scientific problems to confirm that it can effectively serve as a baseline model and substantially improve the statistical power of brain analyses. To test the model, we will use one of our lab's datasets, which is aimed at predicting action video gamers versus non-gamer based on their resting-state connectivity in cognitive control brain networks.
 
 In conclusion, our project seeks an initiative to leverage high-performance computing and large deep learning to address major, long-standing challenges in neuroscience. If successful, it will provide the field with a large number of preprocessed datasets as well as a new standard deep learning model for brain imaging.
 
 ## Software
+
 In a previous project we used a standardized preprocessing pipeline that revolved around fMRIPrep and implemented supplementary deep learning in Jupyter Notebooks, accompanied with a custom Python package for utilities and automated tasks. We will follow a similar structure using the same tools that previously worked on local Ubuntu/Docker machines (with and without GPUs) and on Uni.lu HPC (multi-node without GPU). Some of the key software and computational techniques are listed below.
 
-Data:
-We have developed a customized script using DVC and OpenNeuro NPM package (see below). The script, triggered by GitLab CI, downloads datasets from OpenNeuro S3 and further uses fMRIPrep and MNE to preprocess the data. This step requires temporary disk space for each dataset, on-CPU computation, and memory for fMRIPrep and MNE.
-Deep learning:
-We will primarily use Convolutional Neural Networks and its variants (e.g., TCN) for spatial feature extraction, seq2seq models such as RNN and Transformer and their variants for temporal feature extraction, Diffusion models, Generative Adversarial Networks (TGANs and CGANs), Variational Autoencoders (Seq2Seq VAEs), and additional methods to improve training and generalization such as hyperparameter tuning, transfer learning (hybrid fusion for multi-modality and fine-tuning for few-shot learning), regularization, optimal window time-series segmentation, learning-rate scheduling, early-stopping, and knowledge distillation.
-Continuous integration:
-The codes will be initially hosted in a private ULHPC GitLab repository and will be automatically deployed on the cluster via GitLab CI. Upon successful preprocessing and model training, the model weights will be publicly available on Hugging Face and codes will be shared publicly on xCIT lab's GitHub.
+**Data:** We have developed a customized script using DVC and OpenNeuro NPM package (see below). The script, triggered by GitLab CI, downloads datasets from OpenNeuro S3 and further uses fMRIPrep and MNE to preprocess the data. This step requires temporary disk space for each dataset, on-CPU computation, and memory for fMRIPrep and MNE.
 
-## Particular libraries
+**Deep learning:** We will primarily use Convolutional Neural Networks and its variants (e.g., TCN) for spatial feature extraction, seq2seq models such as RNN and Transformer and their variants for temporal feature extraction, Diffusion models, Generative Adversarial Networks (TGANs and CGANs), Variational Autoencoders (Seq2Seq VAEs), and additional methods to improve training and generalization such as hyperparameter tuning, transfer learning (hybrid fusion for multi-modality and fine-tuning for few-shot learning), regularization, optimal window time-series segmentation, learning-rate scheduling, early-stopping, and knowledge distillation.
+
+**Continuous integration:** The codes will be initially hosted in a private ULHPC GitLab repository and will be automatically deployed on the cluster via GitLab CI. Upon successful preprocessing and model training, the model weights will be publicly available on Hugging Face and codes will be shared publicly on xCIT lab's GitHub.
+
+### Particular libraries
 
 Our software bills of materials revolve around neuroimaging, data science, machine learning, and deep learning toolkits, mostly written in Python. Consequently, the primary programming language for this project is Python. We will use a variety of libraries that are instrumental to the management, preprocessing, modeling, storage, and analysis stages. Here are some key libraries:
 
-Dependency management:
+#### Dependency management
 Spack: previously we used module/anaconda to manage dependencies. We will replace it with spack package management to be able to access optimized packages. Will will also use EC2-optimized container images, and NPM to install OpenNeuro CLI, and Singularity as fMRIPrep is commonly deployed as a Singularity image. Alternatives include the HPC module system, pip/venv/poetry for python packages, and pre-installed dependencies in Singularity/Docker containers.
 
-Numerical computation and machine learning:
+#### Numerical computation and machine learning
 We will extensively use common techniques in data science pipelines including data processing, statistical analysis, and machine learning techniques for our research. Techniques such as normalization, clustering, and dimensionality reduction (PCA, ICA, and UMAP) will be used to clean, understand, and visualize the data. We will also use iterative solvers as they are often used in machine learning optimization problems. We will mainly use different versions of Numpy, Scipy, Nibabel, and Pandas as these libraries are fundamental packages for numerical computation and data processing in Python and sometimes they need to be deployed independently because of version incompatibility with the main deep learning frameworks. We will use them for data manipulation and mathematical operations preprocessing and managing our dataset in a structured format. Nibabel and MNE libraries will be used to access and manipulate neuroimaging data formats (i.e., fMRI and EEG data).
 Scikit-Learn, Nilearn, MNE: These are the main packages that implement classic machine learning techniques for neuroimaging data. They will be used for model selection (e.g., cross-validation), preprocessing, and performance evaluation. Nilearn is a Python module for fast and easy statistical learning on NeuroImaging data. It leverages the scikit-learn toolbox for multivariate statistics with applications such as predictive modeling, classification, decoding, or connectivity analysis. MNE is a Python module developed for analyzing human neurophysiological data. MNE provides tools for data preprocessing, artifact removal, source localization, and statistical analysis.
-Visualization: We will mainly use Matplotlib and Seaborn for data visualization, exploratory data analysis and result presentation. During deep learning training, we will also use Tensorboard and DVC dashboard to trace the logs remotely and visualize relevant metrics.
 
-Data:
-DVC will be used to manage data access. DVC is git-based and supports S3 access and its cache mechanism allows identical access to files locally, within HPC clusters, and remotely. 
-OpenNeuro CLI: this is a Node.js library that enables command line access to OpenNeuro datasets on S3. Alternatives include using Datalad (stored using Git Annex on GitHub) or manually using the Request Python library to access datasets through GraphQL on OpenNeuro website.
-fMRIPrep: for preprocessing and cleaning functional magnetic resonance imaging (fMRI) images. It automates the necessary steps to prepare raw fMRI data for further analysis. This includes skull stripping, motion correction, spatial normalization, and noise reduction. fmriprep generates BIDS-compatible outputs and ensures that the data is in a suitable format and quality for subsequent analysis. This package requires many binary dependencies to be installed manually (e.g., freesurfer), and the best way to deploy it is via Singularity/Docker container images.
-MNE: for analyzing human neurophysiological data. It supports magnetoencephalography (MEG), electroencephalography (EEG), stereoelectroencephalography (sEEG), and electrocorticography (ECoG). We will use anaconda or pip/venv to deploy MNE and manage its dependencies.
+#### Visualization
+We will mainly use Matplotlib and Seaborn for data visualization, exploratory data analysis and result presentation. During deep learning training, we will also use Tensorboard and DVC dashboard to trace the logs remotely and visualize relevant metrics.
 
-Deep learning:
-PyTorch2: PyTorch is a popular open-source tensor manipulation and deep learning library for Python. We chose PyTorch because it provides a high-level interface for designing and training machine learning models, and it has robust support for distributed acceleration. This allows for rapid prototyping, which is necessary for our exploratory approach to developing a multimodal brain model. Furthermore, PyTorch 2.0 provides flexible design and supports inference on C7g instances, which is particularly advantageous given the complex nature of our project. Alternatives include TensorFlow/Keras, Apache MXNet, and Jax, each with their own unique advantages. TensorFlow, for instance, has robust support for deployment in production, and Keras provides a user-friendly interface for building neural networks. Despite their strengths, we chose PyTorch2 for its Pythonic style, compatibility with Graviton3 architecture, and current popularity in the academic research community. This provides a greater flexibility, easier debugging, and reproducibility in the research and development phases of our project.
-PyTorch Lightning: PyTorch Lightning is a wrapper for PyTorch that aids in organizing PyTorch code and provides advanced functionalities. It simplifies the process of complex distributed computing, supports a vast range of logging and visualizing tools, and offers advanced training optimizations. PyTorch Lightning allows us to focus on the research while it takes care of most of the routine engineering aspects.
-Horovod: Horovod is a distributed training framework for TensorFlow, Keras, PyTorch, and Apache MXNet. The goal of Horovod is to make distributed Deep Learning fast and easy to use. The reason we chose Horovod is to speed up the model training process on the HPC resources. Horovod allows us to train our model on multiple GPUs, leading to faster results without major modifications to our existing PyTorch code. Currently, we are not planning to use GPU on the HPC, but only on local machines prior to the deployment. One alternative is PyTorch's built-in DistributedDataParallel (DDP) for multi-GPU training. However, Horovod's easy-to-use API and efficient inter-GPU communication make it a superior choice for our project's specific requirements.
-RayTune/Optuna/Scikit-Optimize: which will be used throughout the data preprocessing and deep learning pipelines for hyper-parameter optimization. All the hyperparameter tuning libraries are in Python and compatible with PyTorch Lightning and Scikit-Learn. We will use Tensorboard and DVC Dashboard to monitor the logs and metrics.
+#### Data
 
-## HPC environment sizing preliminary estimate
+**DVC** will be used to manage data access. DVC is git-based and supports S3 access and its cache mechanism allows identical access to files locally, within HPC clusters, and remotely. 
+
+**OpenNeuro CLI:** this is a Node.js library that enables command line access to OpenNeuro datasets on S3. Alternatives include using Datalad (stored using Git Annex on GitHub) or manually using the Request Python library to access datasets through GraphQL on OpenNeuro website.
+
+**fMRIPrep:** for preprocessing and cleaning functional magnetic resonance imaging (fMRI) images. It automates the necessary steps to prepare raw fMRI data for further analysis. This includes skull stripping, motion correction, spatial normalization, and noise reduction. fmriprep generates BIDS-compatible outputs and ensures that the data is in a suitable format and quality for subsequent analysis. This package requires many binary dependencies to be installed manually (e.g., freesurfer), and the best way to deploy it is via Singularity/Docker container images.
+
+**MNE:** for analyzing human neurophysiological data. It supports magnetoencephalography (MEG), electroencephalography (EEG), stereoelectroencephalography (sEEG), and electrocorticography (ECoG). We will use anaconda or pip/venv to deploy MNE and manage its dependencies.
+
+#### Deep learning
+
+**PyTorch 2:** PyTorch is a popular open-source tensor manipulation and deep learning library for Python. We chose PyTorch because it provides a high-level interface for designing and training machine learning models, and it has robust support for distributed acceleration. This allows for rapid prototyping, which is necessary for our exploratory approach to developing a multimodal brain model. Furthermore, PyTorch 2.0 provides flexible design and supports inference on C7g instances, which is particularly advantageous given the complex nature of our project. Alternatives include TensorFlow/Keras, Apache MXNet, and Jax, each with their own unique advantages. TensorFlow, for instance, has robust support for deployment in production, and Keras provides a user-friendly interface for building neural networks. Despite their strengths, we chose PyTorch2 for its Pythonic style, compatibility with Graviton3 architecture, and current popularity in the academic research community. This provides a greater flexibility, easier debugging, and reproducibility in the research and development phases of our project.
+
+**PyTorch Lightning:** PyTorch Lightning is a wrapper for PyTorch that aids in organizing PyTorch code and provides advanced functionalities. It simplifies the process of complex distributed computing, supports a vast range of logging and visualizing tools, and offers advanced training optimizations. PyTorch Lightning allows us to focus on the research while it takes care of most of the routine engineering aspects.
+
+**Horovod:** Horovod is a distributed training framework for TensorFlow, Keras, PyTorch, and Apache MXNet. The goal of Horovod is to make distributed Deep Learning fast and easy to use. The reason we chose Horovod is to speed up the model training process on the HPC resources. Horovod allows us to train our model on multiple GPUs, leading to faster results without major modifications to our existing PyTorch code. Currently, we are not planning to use GPU on the HPC, but only on local machines prior to the deployment. One alternative is PyTorch's built-in DistributedDataParallel (DDP) for multi-GPU training. However, Horovod's easy-to-use API and efficient inter-GPU communication make it a superior choice for our project's specific requirements.
+
+**RayTune/Optuna/Scikit-Optimize:** which will be used throughout the data preprocessing and deep learning pipelines for hyper-parameter optimization. All the hyperparameter tuning libraries are in Python and compatible with PyTorch Lightning and Scikit-Learn. We will use Tensorboard and DVC Dashboard to monitor the logs and metrics.
+
+## Preliminary estimates
+
+> HPC environment sizing preliminary estimate
 
 To develop and test our code effectively, we anticipate two development and testing steps. The first step focuses on data collection and data preprocessing. This step involves accessing datasets on S3 and preprocessing them using a standardized pipeline. It requires compute (EC2) and storage (ESB). The second step aims to train a large brain model. Here, we plan to use CPU-based machine learning for developing, testing, and evaluating deep learning models. In a later stage we will use GPU-optimized G5g to deploy deep learning models.
 
 
-Compute Hours: Given the nature of our project which involves the use of high-dimensional neuroimaging data and machine learning toolkits, we anticipate requiring around 3 months equivalent of compute hours for the initial development and testing phase. This includes data preprocessing for at least 20 datasets, model training, validation, and optimization on a Linux machine. The actual number of compute hours will depend on various factors, such as the size of the datasets, the complexity of our model, and the number of epochs required to train our model to a satisfactory level.
-Nodes: We estimate that we will need at least 4 nodes (128GiB memory) for the development and testing phases of our project. This will allow us to leverage parallel computing and distributed mechanisms currently implemented in fMRIPrep and MNE, considerably speeding up the preprocessing and enabling more extensive testing. We will use Slurm to manage the nodes.
-Storage: We will need fast storage to temporarily accommodate the neuroimaging data. A general purpose EBS SSD-based storage system would be ideal for our needs due to its high-speed storage capabilities. We will modify the preprocessing pipeline to use the least possible temporary disk space and discard datasets after preprocessing. Considering that neuroimaging datasets can be several terabytes in size, we estimate needing storage capacity in the range of 5-10TB.
-Data transfer: As our datasets will primarily come from the publicly available S3 (OpenNeuro), we will require consistent and fast network connectivity to download and continually access this data. However, each datasets will be downloaded only a single time and we will develop a robust downloader script to avoid requesting resources twice upon network failures.
+### Compute hours
+Given the nature of our project which involves the use of high-dimensional neuroimaging data and machine learning toolkits, we anticipate requiring around 3 months equivalent of compute hours for the initial development and testing phase. This includes data preprocessing for at least 20 datasets, model training, validation, and optimization on a Linux machine. The actual number of compute hours will depend on various factors, such as the size of the datasets, the complexity of our model, and the number of epochs required to train our model to a satisfactory level.
+
+### Nodes
+We estimate that we will need at least 4 nodes (128GiB memory) for the development and testing phases of our project. This will allow us to leverage parallel computing and distributed mechanisms currently implemented in fMRIPrep and MNE, considerably speeding up the preprocessing and enabling more extensive testing. We will use Slurm to manage the nodes.
+
+### Storage
+We will need fast storage to temporarily accommodate the neuroimaging data. A general purpose EBS SSD-based storage system would be ideal for our needs due to its high-speed storage capabilities. We will modify the preprocessing pipeline to use the least possible temporary disk space and discard datasets after preprocessing. Considering that neuroimaging datasets can be several terabytes in size, we estimate needing storage capacity in the range of 5-10TB.
+
+### Data transfer
+As our datasets will primarily come from the publicly available S3 (OpenNeuro), we will require consistent and fast network connectivity to download and continually access this data. However, each datasets will be downloaded only a single time and we will develop a robust downloader script to avoid requesting resources twice upon network failures.
 
 Our preliminary estimate, calculated using the AWS calculator, uses a c7g.16xlarge EC2 instance (80% on-demand availability), 10TB ESB gp3 storage, and 200TB inbound data transfer. This configuration would result in a monthly cost of 2,320.71 USD. However, it is crucial to note that these estimates are subject to adjustment as the project advances and we develop a more comprehensive understanding of the available resources and our resource consumption.
 

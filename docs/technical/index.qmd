@@ -1,0 +1,13 @@
+---
+listing:
+  contents:
+    - "*md"
+  type: table
+  sort: default
+  categories: false
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: false
+toc: false
+---

@@ -1,3 +1,6 @@
 ---
-title: "docs"
+title: "MutliModalRest"
 ---
+
+- [Technical documents](technical/)
+- [Tutorials](tutorials/)

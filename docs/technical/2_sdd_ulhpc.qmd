@@ -1,13 +1,11 @@
 ---
+title: Software Design Document
 order: 2
+author: Morteza Ansarinia
+abstract: >
+    This document outlines the design and development approach for building a multi-modal model for resting-state brain imaging while leveraging the ULHPC AWS cluster. It highlights the project's scope, goals, non-goals, design considerations, and key components.
+
 ---
-
-# Software Design Document
-
-## Pre-trained Model of Multi-Modal Resting State
-
-This document outlines the design and development approach for building a multi-modal model for resting-state brain imaging while leveraging the ULHPC AWS cluster. It highlights the project's scope, goals, non-goals, design considerations, and key components.
-
 
 ## Context and scope
 
@@ -67,7 +65,7 @@ ML/DL Training: Rather than fully training on the cluster, we will only demonstr
 ## System-context-diagram
 
 
-```mermaid
+```{mermaid}
 graph TD
     User[User/Researcher]
     ULHPC[ULHPC AWS Cluster]

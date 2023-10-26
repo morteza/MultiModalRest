@@ -18,3 +18,12 @@ dvc import https://github.com/OpenNeuroDatasets/ds002843.git / -o data/ds002843
 ```
 
 The data will be downloaded to `data/ds002843/` directory.
+
+
+## Documentation
+
+To build the documentation, run:
+
+```bash
+quarto render docs/
+```
