@@ -1,0 +1,64 @@
+# Dependency management
+
+## Spack
+
+We use [spack](https://spack.io/) to manage software packages. Spack is a flexible package manager for supercomputers, Linux, and macOS. It makes installing scientific software easy. With spack, you can build a package with multiple versions, configurations, platforms, and compilers, and all of these builds can coexist on the same machine.
+
+
+### Setting up spack
+
+```bash
+git clone https://github.com/spack/spack.git
+. spack/share/spack/setup-env.sh
+```
+
+### Initializing the environment
+
+Then create and activate a new environment:
+
+
+```bash
+cd <PROJECT_FOLDER>
+spack env create -d .
+spack env activate .
+```
+
+### Basic usage
+
+Once you've installed and activated your environment with Spack,  you can use the following commands to get you started:
+
+```bash
+spack find                               # listing installed packages
+spack list <PACKAGE_NAME>                # searching for packages
+spack graph <PACKAGE_NAME>               # visualizing dependencies
+spack install <PACKAGE_NAME>             # installing packages
+spack load <PACKAGE_NAME>                # loading packages
+spack uninstall <PACKAGE_NAME>           # uninstalling packages
+spack info <PACKAGE_NAME>                # getting information about packages
+
+spack install <PACKAGE_NAME>%gcc@12.2.0  # installing packages with dependencies
+spack install -j 4 <PACKAGE_NAME>        # installing packages in parallel
+
+```
+
+## Micromamba
+
+[Micromamba]() is a minimal installer for the conda ecosystem. It is a standalone binary that installs and manages conda packages. It is drop-in replacement for the conda/mamba executable in environments where only conda package installation is desired.
+
+### Setting up micromamba
+
+To install micromamba on the cluster, run the following commands:
+
+```bash
+# TODO
+```
+
+### Initializing the environment
+
+To create and activate a new environment:
+
+```bash
+micromamba env create -f environment.yml
+micromamba activate MultiModalRest
+```
+
