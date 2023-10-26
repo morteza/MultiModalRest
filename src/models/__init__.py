@@ -1,5 +1,5 @@
 from .multihead_classifier import MultiHeadClassifier
-from .spatiotemporal_auto_encoder import SpatioTemporalAutoEncoder
+from .meeg_autoencoder import MEEGAutoEncoder
 
 __all__ = [
     "MultiHeadClassifier",

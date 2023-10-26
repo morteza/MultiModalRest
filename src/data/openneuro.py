@@ -27,7 +27,7 @@ class OpenNeuroDataModule(pl.LightningDataModule):
                              modality: Literal['fmri', 'eeg', 'meg'] = 'fmri',
                              n_subjects=10,
                              n_timepoints=125,
-                             features_dim=(10, 10, 10)):
+                             features_dim=(10,)):
 
         # raise NotImplementedError("Please define a default dataset to load.")
         # shape: fmri: (n_subjects, n_timepoints, x, y, z)

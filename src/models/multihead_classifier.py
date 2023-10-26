@@ -4,7 +4,7 @@ from torch import nn
 from torch.nn import functional as F
 import pytorch_lightning as pl
 import torchmetrics
-from .spatiotemporal_auto_encoder import SpatioTemporalAutoEncoder
+from .meeg_autoencoder import MEEGAutoEncoder
 
 
 class MultiHeadClassifier(pl.LightningModule):
@@ -15,7 +15,7 @@ class MultiHeadClassifier(pl.LightningModule):
         self.n_spatial_features = n_spatial_features
         self.n_temporal_features = n_temporal_features
 
-        self.auto_encoder = SpatioTemporalAutoEncoder(
+        self.meeg_autoencoder = MEEGAutoEncoder(
             n_spatial_features,
             n_temporal_features,
             example_input_array)
@@ -33,7 +33,7 @@ class MultiHeadClassifier(pl.LightningModule):
 
     def forward(self, x):
 
-        x_recon, h = self.auto_encoder(x)
+        x_recon, h = self.meeg_autoencoder(x)
 
         y_cls = self.head_cls(h)
         y_subj = self.head_subj_cls(h)
