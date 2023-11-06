@@ -1,10 +1,9 @@
-name: ULHPC workflow
+name: HPC Sync
 on: [push, pull_request]
 jobs:
   # test:
   #   ...
   deploy:
-    name: "ULHPC sync"
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # needs: test
