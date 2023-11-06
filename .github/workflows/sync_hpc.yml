@@ -1,10 +1,10 @@
-name: CI
+name: ULHPC workflow
 on: [push, pull_request]
 jobs:
   # test:
   #   ...
   deploy:
-    name: "Sync ULHPC Repository"
+    name: "ULHPC sync"
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     # needs: test

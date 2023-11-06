@@ -1,12 +1,13 @@
+name: "Quarto workflow"
 on:
   workflow_dispatch:
   push:
     branches: main
 
-name: "Quarto Publish"
 
 jobs:
   build-deploy:
+    name: "Quarto setup and publish"
     runs-on: ubuntu-latest
     permissions:
       contents: write
