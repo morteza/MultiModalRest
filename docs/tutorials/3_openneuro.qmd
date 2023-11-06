@@ -1,4 +1,12 @@
-# TODO How-to: install OpenNeuro dataset using Datalad
+---
+title: "How to install OpenNeuro dataset using Datalad"
+order: 1
+author: Morteza Ansarinia
+abstract: |
+  This tutorial provides a step-by-step guide on how to install OpenNeuro dataset using Datalad.
+---
+
+# How to install OpenNeuro dataset using Datalad
 1. instsll and configure spack
 3. create a new local repo for the spack
 4. add git-annex package and properly modify the file (as of 2023-0

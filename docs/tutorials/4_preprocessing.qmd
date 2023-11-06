@@ -1,3 +1,11 @@
+---
+title: "Preprocessing fMRI and MEEG data"
+order: 1
+author: Morteza Ansarinia
+abstract: |
+  This tutorial shows how to minimally preprocess fMRI and M/EEG data.
+
+---
 
 # Preprocessing
 
