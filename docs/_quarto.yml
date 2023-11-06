@@ -3,6 +3,9 @@ project:
   title: Pre-trained Multi Modal Resting State Brain Models
   output-dir: _site/
 
+execute:
+  freeze: auto
+
 website:
   title: MultiModalRest
   search: true
