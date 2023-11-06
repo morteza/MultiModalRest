@@ -4,7 +4,6 @@ on:
   push:
     branches: main
 
-
 jobs:
   build-deploy:
     name: "Quarto setup and publish"
