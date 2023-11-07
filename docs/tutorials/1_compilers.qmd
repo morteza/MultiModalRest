@@ -8,22 +8,38 @@ abstract: |
 
 # ULHPC Graviton3E Compilers
 
-The default compiler on the ULHPC Graviton3E cluster is an optimized GCC v12.2.0. By default, it can be loaded by running the `module load gcc` command. However, in this tutorial, we will use the Spack package manager to load the GCC compiler and use it to compile packages.
+The default compiler on the ULHPC Graviton3E cluster is an optimized GCC v12.2.0. By default, it can be loaded by running the `module load compiler/GCC/12.2.0` command. However, here, we will use the Spack package manager to load the GCC compiler and use it to build the packages.
 
-Spack compiler configuration is 
+You can add a new compiler by modifying Spack's `compilers.yaml` file (usually in the `~/.spack/linux/compilers.yaml` path).
 
-```bash
-module load gcc/12.2.0
+
+```yaml
+compilers:
+- compiler:
+    spec: gcc@=12.2.0
+    paths:
+      cc: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gcc
+      cxx: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/g++
+      f77: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gfortran
+      fc: /shared/apps/easybuild/software/GCCcore/12.2.0/bin/gfortran
+    flags: {}
+    operating_system: amzn2
+    target: aarch64
+    modules: [ "compiler/GCC/12.2.0" ]
+    environment: {}
+    extra_rpaths: []
 ```
 
-You can also modify Spack's `compilers.yaml` file:
+Then you can verify that the compiler is correctly loaded:
 
 ```bash
-spack compiler add
+spack compiler list
 ```
 
-and then select the GCC compiler. You can also use the following command to set the GCC compiler as the default compiler:
+The output should be similar to the following:
 
 ```bash
-spack compiler find
+==> Available compilers
+-- gcc amzn2-aarch64 --------------------------------------------
+gcc@7.3.1  gcc@12.2.0
 ```
