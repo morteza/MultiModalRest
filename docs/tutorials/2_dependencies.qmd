@@ -70,3 +70,12 @@ micromamba env create -f environment.yml
 micromamba activate MultiModalRest
 ```
 
+
+## Spack custom repository
+
+Add it to the `~/.spack/repos.yaml` file, for example:
+
+```yaml
+repos:
+- $HOME/custom-spack-repo
+```

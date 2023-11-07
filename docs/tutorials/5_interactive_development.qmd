@@ -1,0 +1,13 @@
+# reserve an interactive node
+
+```
+srun -p small -N 1  --pty bash -i
+```
+
+# use VSCode remote development (via SSH)
+
+- [] modify SSH config (local)
+- [] add RemoteCommand to SSH config (local)
+- [] Run VSCode and install Remote SSH extenstion
+- [] connect to remote host (local)
+- [] Install VSCode server on remote host (automatic)

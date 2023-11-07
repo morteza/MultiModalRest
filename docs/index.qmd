@@ -2,5 +2,7 @@
 title: "MutliModalRest"
 ---
 
+This is the documentation for the `MultiModalRest` project. The main goal of this website is to document steps needed to run a large-scale neuroimaging study on a HPC cluster. The project is divided into several sections:
+
 - [Technical documents](technical/)
 - [Tutorials](tutorials/)
