@@ -28,14 +28,14 @@ jobs:
           to: html
           path: docs/
 
-      - name: Compress site
-        run: tar -cvf _site.tar docs/_site/
+      - name: Compress
+        run: tar -cvf docs_site.tar docs/_site/
 
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
-          name: _site.tar
-          path: _site.tar
+          name: docs_site.tar
+          path: docs_site.tar
           retention-days: 1
 
   deploy:
@@ -48,13 +48,15 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: _site.tar
+          name: docs_site.tar
+      - name: Unpack
+        run: tar -xvf docs_site.tar
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: _site.tar
+          path: docs/_site/
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
