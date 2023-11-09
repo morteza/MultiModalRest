@@ -28,14 +28,18 @@ jobs:
           to: html
           path: docs/
 
+      - name: Compress site
+        run: zip _site.zip docs/_site/* -r
+
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
-          name: github-pages
-          path: docs/_site/
+          name: _site.zip
+          path: _site.zip
           retention-days: 7
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -44,7 +48,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: github-pages
+          name: _site.zip
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
