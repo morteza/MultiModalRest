@@ -36,7 +36,7 @@ jobs:
         with:
           name: _site.zip
           path: _site.zip
-          retention-days: 7
+          retention-days: 1
 
   deploy:
     needs: build
