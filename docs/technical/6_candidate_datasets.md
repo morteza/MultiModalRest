@@ -2,17 +2,11 @@
 order: 6
 ---
 
-## TODO:
-
-- [ ] How to install AWSCLI and download OpenNeuro datasets
-- [ ] Add a section on how to add a new dataset to the CI
-- [ ] Add a section on how to add a new dataset to the cluster
+# Candidate Datasets
 
 ```bash
 aws s3 sync --no-sign-request s3://openneuro.org/ds002843 $PROJ_DIR/data/openneuro/ds002843/
 ```
-
-# Candidate Datasets
 
 ## OpenNeuro resting-state EEG datasets:
 
@@ -32,6 +26,10 @@ aws s3 sync --no-sign-request s3://openneuro.org/ds002843 $PROJ_DIR/data/openneu
 
 # DataLad
 
+See `$PROJ_DIR/datasets/datalad/openneuro/`:
+
+
+```
 .
 ├── ds000001
 ├── ds000002
@@ -900,3 +898,13 @@ aws s3 sync --no-sign-request s3://openneuro.org/ds002843 $PROJ_DIR/data/openneu
 ├── ds004580
 ├── ds004588
 ├── ds004590
+```
+
+
+
+
+## TODO:
+
+- [ ] How to install AWSCLI and download OpenNeuro datasets
+- [ ] Add a section on how to add a new dataset to the CI
+- [ ] Add a section on how to add a new dataset to the cluster
