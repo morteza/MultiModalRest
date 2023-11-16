@@ -4,14 +4,15 @@ order: 1
 author: Morteza Ansarinia
 abstract: |
   This tutorial shows how to minimally preprocess resting-state fMRI on Graviton3E clusters.
-
 ---
+
+⚠️ See [1 rsfMRI Preprocessing.ipynb](/notebooks/1%20rsfMRI%20Preprocessing.ipynb) for the full preprocessing codes. ⚠️
 
 Most preprocesing tools for fMRI scans are developed for the x86 architecture and the most reproducible way to run a preprocessing pipeline is to use containers. However, pipelines such as fMRIPrep rely on tools that do not support Graviton3E aarch64 architecture yet. Here, we instead use a custom but fast pipeline to minimally pre-process resting-state fMRI images on aarch64 architecture using only available Python and Spack packages on aarch64 architecture.
 
 It requires ANTsPyX, which can be installed using spack on AWS/ULHPC cluster:
 
-```bash
+``` bash
 spack install antspyx
 spack load antspyx
 ```
@@ -20,29 +21,48 @@ spack load antspyx
 
 Preprocessing steps include:
 
-- register_to_t1w
-- clean_signal
-- register_to_template
-
+-   register_to_t1w
+-   clean_signal
+-   register_to_template
 
 ## Loading images
 
-- T1w, T2
+``` python
+from nilearn.image import load_img
+
+t1 = load_img('data/openneuro/ds004697/sub-001/ses-1/anat/sub-001_ses-1_T1w.nii.gz')
+t2 = load_img('data/openneuro/ds004697/sub-001/ses-1/func/sub-001_ses-1_task-rest_bold.nii.gz')
+```
+
+-   T1w, T2
 
 ## Brain extraction
 
-- [ ] ANTS
-- [ ] DeepLearning-based
+-   [ ] ANTS
+-   [ ] DeepLearning-based
 
 ## Normalization
 
-- ANTS
+-   ANTS
 
 ## Smoothing
 
 ## Denoising and filtering
 
-## Registering to a reference coordinate space
+## Resample to a reference coordinate space
 
-## fMRI
+``` python
+from nilearn.datasets import load_mni152_template
+from nilearn.image import resample_img
 
+mni152 = load_mni152_template(resolution=2)
+t1_mni152 = resample_to_img(t1, mni152)
+
+# t1_mask = compute_brain_mask(t1)
+# t1 = resample_to_img(t1, mni152)
+# rs_img_mean = resample_to_img(rs_img_mean, mni152)
+
+t2 = resample_to_img(t2, t1)
+# t2 = resample_img(t2, mni152.affine, mni152.shape)
+t2_mean = mean_img(t2)
+```
