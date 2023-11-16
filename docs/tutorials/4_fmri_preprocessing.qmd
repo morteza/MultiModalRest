@@ -1,0 +1,48 @@
+---
+title: "How to minimally preprocess resting-state fMRI on Graviton3E"
+order: 1
+author: Morteza Ansarinia
+abstract: |
+  This tutorial shows how to minimally preprocess resting-state fMRI on Graviton3E clusters.
+
+---
+
+Most preprocesing tools for fMRI scans are developed for the x86 architecture and the most reproducible way to run a preprocessing pipeline is to use containers. However, pipelines such as fMRIPrep rely on tools that do not support Graviton3E aarch64 architecture yet. Here, we instead use a custom but fast pipeline to minimally pre-process resting-state fMRI images on aarch64 architecture using only available Python and Spack packages on aarch64 architecture.
+
+It requires ANTsPyX, which can be installed using spack on AWS/ULHPC cluster:
+
+```bash
+spack install antspyx
+spack load antspyx
+```
+
+## What does "minimally pre-process" mean here?
+
+Preprocessing steps include:
+
+- register_to_t1w
+- clean_signal
+- register_to_template
+
+
+## Loading images
+
+- T1w, T2
+
+## Brain extraction
+
+- [ ] ANTS
+- [ ] DeepLearning-based
+
+## Normalization
+
+- ANTS
+
+## Smoothing
+
+## Denoising and filtering
+
+## Registering to a reference coordinate space
+
+## fMRI
+
