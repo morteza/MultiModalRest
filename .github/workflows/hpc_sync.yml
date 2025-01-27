@@ -1,5 +1,10 @@
 name: HPC Sync
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "ulhpc-aws-2023" ]
+  pull_request:
+
 jobs:
   # test:
   #   ...
