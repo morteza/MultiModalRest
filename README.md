@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> **This code is outdated, see https://github.com/morteza/ACNets/tree/multimodal/ for an updated version.**
+
 # Pre-trained Multi-Modal Resting-State Brain Model
 
 This project demonstrates multi-modal multi-head pipeline to extract spatiotemporal embedding from resting-state brain activities (including resting-state fMRI and EEG).
